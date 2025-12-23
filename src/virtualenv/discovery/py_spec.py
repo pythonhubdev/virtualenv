@@ -113,7 +113,7 @@ class PythonSpec:
         if spec.free_threaded is not None and spec.free_threaded != self.free_threaded:
             return False
 
-        for our, req in zip((self.major, self.minor, self.micro), (spec.major, spec.minor, spec.micro)):
+        for our, req in zip((self.major, self.minor, self.micro), (spec.major, spec.minor, spec.micro), strict=False):
             if req is not None and our is not None and our != req:
                 return False
         return True

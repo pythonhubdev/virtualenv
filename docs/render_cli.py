@@ -170,7 +170,7 @@ class CliTable(SphinxDirective):
         target = n.target("", "", ids=names, names=names)
         self.register_target_option(target)
         first = True
-        for name, orig in zip(names, row.names):
+        for name, orig in zip(names, row.names, strict=False):
             if first:
                 first = False
             else:

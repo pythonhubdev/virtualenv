@@ -58,8 +58,6 @@ def test_embed_wheel_versions(tmp_path: Path) -> None:
     session = session_via_cli([str(tmp_path)])
     if sys.version_info[:2] >= (3, 12):
         expected = {"pip": "bundle"}
-    elif sys.version_info[:2] >= (3, 9):
-        expected = {"pip": "bundle", "setuptools": "bundle"}
     else:
-        expected = {"pip": "bundle", "setuptools": "bundle", "wheel": "bundle"}
+        expected = {"pip": "bundle", "setuptools": "bundle"}
     assert session.seeder.distribution_to_versions() == expected

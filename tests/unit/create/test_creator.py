@@ -172,7 +172,7 @@ def test_create_no_seed(  # noqa: C901, PLR0912, PLR0913, PLR0915
         assert global_sys_path not in sys_path, msg
     else:
         common = []
-        for left, right in zip(reversed(system_sys_path), reversed(sys_path)):
+        for left, right in zip(reversed(system_sys_path), reversed(sys_path), strict=False):
             if left == right:
                 common.append(left)
             else:

@@ -404,8 +404,7 @@ class PythonInfo:  # noqa: PLR0904
                 spec_path = spec.path
                 if sys.platform == "win32":
                     basename, suffix = os.path.splitext(basename)
-                    if spec_path.endswith(suffix):
-                        spec_path = spec_path[: -len(suffix)]
+                    spec_path = spec_path.removesuffix(suffix)
                 if basename != spec_path:
                     return False
 
@@ -422,7 +421,7 @@ class PythonInfo:  # noqa: PLR0904
         if spec.free_threaded is not None and spec.free_threaded != self.free_threaded:
             return False
 
-        for our, req in zip(self.version_info[0:3], (spec.major, spec.minor, spec.micro)):
+        for our, req in zip(self.version_info[0:3], (spec.major, spec.minor, spec.micro), strict=False):
             if req is not None and our is not None and our != req:
                 return False
         return True

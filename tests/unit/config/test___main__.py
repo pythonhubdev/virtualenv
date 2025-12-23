@@ -89,7 +89,7 @@ def test_session_report_full(tmp_path: Path, capsys: pytest.CaptureFixture[str])
 
 
 def _match_regexes(lines, regexes):
-    for line, regex in zip(lines, regexes):
+    for line, regex in zip(lines, regexes, strict=False):
         comp_regex = re.compile(rf"^{regex}$")
         assert comp_regex.match(line), line
 
